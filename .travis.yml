@@ -12,6 +12,9 @@ sudo: required
 install:
   - pip install -r requirements.txt
 
+script:
+  - echo "pre-deployment"
+
 services:
   - docker
 
