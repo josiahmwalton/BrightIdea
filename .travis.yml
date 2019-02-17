@@ -1,0 +1,32 @@
+language: python
+cache: pip
+python:
+  - 3.6
+
+branches:
+  only:
+    - develop
+
+sudo: required
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - echo "pre-deployment"
+
+services:
+  - docker
+
+notifications:
+  slack:
+    secure: qUX7py24aIjy1MItW7xM0kIf+KSdEROB3F/hlRT14oVHrPxdk9+oLfKJoUjw6jPrfUjxqI0ECXqq+Sklt6zKI+FKHIf9/KAUptdNJTJPs7ggnrPqufWs52u5dn1AawnQqUgHgQjYrEt8gFkX4fBYwcbyjl2gtKf9odh+xJb6oKHXexAPgqmljizcgyiApEGCINdcjL//ZRg4TnlMiLUW/JjWuHPgEwjyqp8Ot5PMll68ZGKi3uOE5DNohxMgg5mhbpNCitWEa/VRTpcReydih22s3toXm1iUSP5jcgHjCJIB+ywB89ynMjJB87AAscnBeWQF1kMzs0e6rS7nUaNd4TTred4Esvo0xp0+ybEoihskJKqjekOqFHDqdAiUerI8mg+QCSHhRJiwIBR8EbH2RWCZS6FJzwLBEB/G9P5Uugz/+8jzI4JvT3uf/oxGQPJPgymPPvshdgwJMaXU7upz3J/WxaDo+V9kj2j5NSl/qohbgh0SRQytVCJXvQAlxXspb35gD29VWIYcJbuSRey3oHTgyYf8liJSm+5PWvU/tY39Kd0aLtbrgWMeNH7w/4BGiGk7Bi0OfYzgYuvHbKjBdJt06twa8EAhJ4oHaSDo6otew6eGS03Oqy4dPhiPCu4oFb6Yr7V1xed58vYUDfpPMq4FNT1IggkTm+AmGldF/+c=
+
+deploy:
+  provider: script
+  script: echo "deploying"
+  on:
+    branch: develop
+
+after_deploy:
+  - echo "done deploying"
